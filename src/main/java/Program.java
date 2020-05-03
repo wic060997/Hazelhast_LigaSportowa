@@ -13,6 +13,28 @@ public class Program {
     static Scanner scanner;
     static Random r;
 
+    static void completeData(){
+        Map<Long,LigaSportowa> ligaSportowaMap = hazelcastInstance.getMap("ligaSportowa");
+        LigaSportowa ligaSportowa = new LigaSportowa("Piłka nożna mężczyzn",8,5600,"Ekstraklasa SA");
+
+        LigaSportowa ligaSportowa2 = new LigaSportowa("Piłka nożna kobiet",3,60,"Polski Związek Piłki Nożnej");
+
+        LigaSportowa ligaSportowa3 = new LigaSportowa("Sport żużlowy",3,21,"Polski Związek Motorowy");
+
+        LigaSportowa ligaSportowa4 = new LigaSportowa("Futbol amerykański",4,38,"Polski Związek Futbolu Amerykańskiego");
+
+        LigaSportowa ligaSportowa5 = new LigaSportowa("Futsal",3,60,"Wydział Futsalu PZPN");
+
+        LigaSportowa ligaSportowa6 = new LigaSportowa("Piłka wodna",1,6,"Polski Związek Pływacki");
+
+        ligaSportowaMap.put(r.nextLong(),ligaSportowa);
+        ligaSportowaMap.put(r.nextLong(),ligaSportowa2);
+        ligaSportowaMap.put(r.nextLong(),ligaSportowa3);
+        ligaSportowaMap.put(r.nextLong(),ligaSportowa4);
+        ligaSportowaMap.put(r.nextLong(),ligaSportowa5);
+        ligaSportowaMap.put(r.nextLong(),ligaSportowa6);
+    }
+
     static void addNew(){
         Map<Long,LigaSportowa> ligaSportowaMap = hazelcastInstance.getMap("ligaSportowa");
         LigaSportowa ligaSportowa = new LigaSportowa();
@@ -103,11 +125,22 @@ public class Program {
         Map<Long,LigaSportowa> ligaSportowaMap = hazelcastInstance.getMap("ligaSportowa");
         System.out.println("1 - większe od wartości liczby drużyn");
         System.out.println("2 - mniejsze od wartości liczby drużyn");
-        Map<Long,LigaSportowa> sortLiga;
+        String choose = scanner.nextLine();
 
+        System.out.println("Podaj liczbe do warunku:");
+        int liczba = scanner.nextInt();
 
         for (Map.Entry<Long,LigaSportowa> e: ligaSportowaMap.entrySet()){
-            if()
+            if(choose.equals("1")==true){
+                if(e.getValue().getNumberTema()>liczba){
+                    System.out.println(e.getKey() + " => " + e.getValue().toString());
+                }
+            }
+            else{
+                if(e.getValue().getNumberTema()<liczba){
+                    System.out.println(e.getKey() + " => " + e.getValue().toString());
+                }
+            }
         }
     }
 
