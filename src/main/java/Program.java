@@ -83,7 +83,31 @@ public class Program {
 
                 System.out.println("Zmień nazwę glównego organu prowadzącego: ");
                 System.out.println("Wpisz Q aby pominąć!!!");
+                String nazwaOrg = scanner.nextLine();
+                if(nazwaOrg.equals("Q")==false){
+                    e.getValue().setNameLeadingLeadBody(nazwaOrg);
+                }
             }
+        }
+    }
+
+    static void remove(){
+        Map<Long,LigaSportowa> ligaSportowaMap = hazelcastInstance.getMap("ligaSportowa");
+        System.out.println("Podaj klucz: ");
+        Long key = scanner.nextLong();
+
+        ligaSportowaMap.remove(key);
+    }
+
+    static void getClause(){
+        Map<Long,LigaSportowa> ligaSportowaMap = hazelcastInstance.getMap("ligaSportowa");
+        System.out.println("1 - większe od wartości liczby drużyn");
+        System.out.println("2 - mniejsze od wartości liczby drużyn");
+        Map<Long,LigaSportowa> sortLiga;
+
+
+        for (Map.Entry<Long,LigaSportowa> e: ligaSportowaMap.entrySet()){
+            if()
         }
     }
 
